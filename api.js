@@ -158,6 +158,6 @@ app.delete("/accounts/:id", function (req, res) {
   res.json(conta);
 });
 
-app.listen(4567, function () {
+app.listen(process.env.PORT || 4567, function () {
   console.log("Rodando!"); // essa função é chamada quando o servidor estiver rodando e mostra a mensagem..
 }); // a função listen recebe uma porta como parâmetro para rodar a aplicação.
