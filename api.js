@@ -1,5 +1,5 @@
-const express = require("express"); // require chama o módulo express e a função que está nele é atribuido para a variável express.
-const app = express(); // a variável app recebe toda função da aplicação express, ou seja, todo o express pode ser usado apartir da variável app.
+const express = require("express");
+const app = express();
 const cors = require("cors");
 
 let contas = [];
@@ -33,14 +33,13 @@ app.post("/accounts", function (req, res) {
   contas.push(conta);
 
   id += 1;
-  console.log(conta);
+
   return res.status(201).json(conta);
 });
 
 app.post("/accounts/:id/deposit", function (req, res) {
   const { id } = req.params;
   const conta = contas.find((conta) => conta.id == id);
-
   const amount = req.body.amount;
   const data = req.body.data;
   const tipo = req.body.tipo;
@@ -59,13 +58,12 @@ app.post("/accounts/:id/deposit", function (req, res) {
   }
 
   return res.status(200).json(conta);
+
 });
 
 app.post("/accounts/:id/saque", function (req, res) {
   const { id } = req.params;
-
   const conta = contas.find((conta) => conta.id == id);
-
   const amount = req.body.amount;
   const data = req.body.data;
   const tipo = req.body.tipo;
@@ -117,7 +115,6 @@ app.get("/accounts/:id", function (req, res) {
 app.patch("/accounts/:id", function (req, res) {
   const { id } = req.params;
   const conta = contas.find((conta) => conta.id == id);
-  console.log(contas);
 
   let name = req.body.name;
 
@@ -158,6 +155,4 @@ app.delete("/accounts/:id", function (req, res) {
   res.json(conta);
 });
 
-app.listen(process.env.PORT || 4567, function () {
-  console.log("Rodando!"); // essa função é chamada quando o servidor estiver rodando e mostra a mensagem..
-}); // a função listen recebe uma porta como parâmetro para rodar a aplicação.
+app.listen(process.env.PORT || 4567)
